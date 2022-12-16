@@ -13,7 +13,7 @@
     <header th:replace="~{frag :: header()}"></header>
     <main>
 
-        <form class="m-5" action="/search/pizza" method="GET">
+        <form class="m-5" action="/user/search/pizza" method="GET">
             <div class="mb-3">
                 <label for="query" class="form-label">Search a pizza</label>
                 <input type="text" name="query" th:value="${query}">
@@ -36,7 +36,7 @@
                 <th scope="col" colspan="1">Promo</th>
                 <th scope="col" colspan="1">Ingredient</th>
                 <th scope="col">
-                    <a th:href="@{/pizza/create}" class="btn btn-success">
+                    <a th:href="@{/admin/pizza/create}" class="btn btn-success">
                         Create
                     </a>
                 </th>
@@ -46,7 +46,7 @@
               <tr th:each="pizza : ${pizze}" th:object="${pizza}">
                 <th scope="row">[[*{id}]]</th>
                 <td>                
-                    <a th:href="@{/pizza/{id} (id=*{id})}">
+                    <a th:href="@{/user/pizza/{id} (id=*{id})}">
                         [[*{name}]]
                     </a>
                 </td>
@@ -62,10 +62,10 @@
                     </span>
                 </td>
                 <td>
-                    <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
+                    <a th:href="@{/admin/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
                         Edit
                     </a>
-                    <a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger">
+                    <a th:href="@{/admin/pizza/delete/{id} (id=*{id})}" class="btn btn-danger">
                         Delete
                     </a>
                 </td>

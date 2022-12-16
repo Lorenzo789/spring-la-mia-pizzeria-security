@@ -42,7 +42,7 @@ public class PizzaController {
 		return "home";
 	}
 	
-	@GetMapping("/pizza/{id}")
+	@GetMapping("/user/pizza/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
 		
 		Optional<Pizza> optPizza = pizzaService.findPizzaById(id);
@@ -54,7 +54,7 @@ public class PizzaController {
 		return "show";
 	}
 	
-	@GetMapping("/pizza/create")
+	@GetMapping("/admin/pizza/create")
 	public String create(Model model) {
 		
 		Pizza pizza = new Pizza();
@@ -69,7 +69,7 @@ public class PizzaController {
 		return "create";
 	}
 	
-	@PostMapping("/pizza/create")
+	@PostMapping("/admin/pizza/create")
 	public String store(@Valid Pizza pizza, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if (bindingResult.hasErrors()) {
@@ -102,7 +102,7 @@ public class PizzaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/pizza/update/{id}")
+	@GetMapping("/admin/pizza/update/{id}")
 	public String edit(@PathVariable("id") int id, Model model) {
 		
 		Optional<Pizza> optPizza = pizzaService.findPizzaById(id);
@@ -117,7 +117,7 @@ public class PizzaController {
 		return "edit";
 	}
 	
-	@PostMapping("/pizza/update")
+	@PostMapping("/admin/pizza/update")
 	public String update(Pizza pizza) {
 		
 		pizzaService.save(pizza);		
@@ -125,7 +125,7 @@ public class PizzaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/pizza/delete/{id}")
+	@GetMapping("/admin/pizza/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		
 		Optional<Pizza> optPizza = pizzaService.findPizzaById(id);
@@ -136,7 +136,7 @@ public class PizzaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/search/pizza")
+	@GetMapping("/user/search/pizza")
 	public String searchPizza(@RequestParam(name="query", required=false)String query, Model model) {
 		
 		List<Pizza> pizze = null;

@@ -8,10 +8,15 @@ import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Ingredient;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promotion;
+import org.generation.italy.demo.pojo.Role;
+import org.generation.italy.demo.pojo.User;
+import org.generation.italy.demo.repo.UserRepo;
 import org.generation.italy.demo.serv.DrinkService;
 import org.generation.italy.demo.serv.IngredientService;
 import org.generation.italy.demo.serv.PizzaService;
 import org.generation.italy.demo.serv.PromotionService;
+import org.generation.italy.demo.serv.RoleService;
+import org.generation.italy.demo.serv.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,6 +33,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	private PromotionService promoService;
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private RoleService roleService;
 	
 	
 	public static void main(String[] args) {
@@ -94,6 +103,22 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		promoService.save(promo3);
 		
 		List<Promotion> promos = promoService.findAll();
+		
+		Role r1 = new Role("USER");
+		Role r2 = new Role("ADMIN");
+		
+		roleService.save(r1);
+		roleService.save(r2);
+		
+		List<Role> roles = roleService.findAll();
+		
+		User user = new User("user", "{noop}1234", r1);
+		User admin = new User("admin", "{noop}5555", r2);
+		
+		userService.save(user);
+		userService.save(admin);
+		
+		List<User> users = userService.findAll();
 	}
 
 }

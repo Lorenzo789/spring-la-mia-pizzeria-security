@@ -13,7 +13,7 @@
 
     <h1 class="p-4">Pizza Edit</h1>
 
-    <form method="POST" action="/pizza/update" th:object="${pizza}" class="px-4">
+    <form method="POST" th:action="@{admin/pizza/update}" th:object="${pizza}" class="px-4">
 
     	<input type="number" name="id" th:field="*{id}" style="display:none">
 
